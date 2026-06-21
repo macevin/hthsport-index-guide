@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>体育与视角 · 华体会</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f6fafb;
+      color: #1f2f33;
+      line-height: 1.7;
+      padding: 1.2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-wrap {
+      max-width: 840px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* header – 简洁博客题头 */
+    .blog-header {
+      margin: 2rem 0 1.5rem 0;
+      border-left: 5px solid #2a9d8f;
+      padding-left: 1.2rem;
+    }
+
+    .blog-header h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #152b2b;
+      line-height: 1.2;
+    }
+
+    .blog-header .sub {
+      font-size: 1rem;
+      color: #3f6a65;
+      margin-top: 0.4rem;
+      font-weight: 350;
+    }
+
+    /* 导语卡片 */
+    .lead-card {
+      background: #ffffff;
+      padding: 1.6rem 1.8rem;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(42, 157, 143, 0.06), 0 2px 6px rgba(0, 20, 10, 0.02);
+      margin-bottom: 2rem;
+      border: 1px solid #d7ece8;
+      transition: box-shadow 0.2s;
+    }
+
+    .lead-card p {
+      font-size: 1.1rem;
+      color: #1b3a3a;
+    }
+
+    .lead-card .accent-text {
+      color: #1b7b6f;
+      font-weight: 450;
+    }
+
+    /* 网格卡片区域 */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .card-item {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.4rem 1.4rem 1.8rem 1.4rem;
+      box-shadow: 0 6px 12px rgba(30, 80, 70, 0.03);
+      border: 1px solid #e2f1ee;
+      transition: transform 0.15s ease, border 0.2s;
+    }
+
+    .card-item:hover {
+      transform: translateY(-3px);
+      border-color: #9dcfc6;
+    }
+
+    .card-item h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #1f4540;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .card-item h3::before {
+      content: "▹";
+      color: #2a9d8f;
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .card-item p {
+      font-size: 0.95rem;
+      color: #2b4a4a;
+      margin-bottom: 0.2rem;
+    }
+
+    /* 正文段落区域 */
+    .essay-section {
+      background: #ffffff;
+      padding: 1.8rem 2rem;
+      border-radius: 24px;
+      margin-bottom: 2rem;
+      border: 1px solid #d4e8e4;
+      box-shadow: 0 4px 12px rgba(0, 30, 20, 0.02);
+    }
+
+    .essay-section p {
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .essay-section p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .blockquote-note {
+      background: #e6f5f2;
+      margin: 1.6rem 0 1.2rem 0;
+      padding: 1.2rem 1.6rem;
+      border-radius: 40px 20px 20px 40px;
+      border-left: 6px solid #2a9d8f;
+      font-style: normal;
+      color: #1e4343;
+      font-weight: 380;
+      box-shadow: inset 0 1px 4px rgba(0, 40, 30, 0.02);
+    }
+
+    .blockquote-note::before {
+      content: "💡 提示";
+      display: block;
+      font-weight: 550;
+      color: #1b7b6f;
+      margin-bottom: 0.3rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* FAQ 摘要 */
+    .faq-mini {
+      margin: 2.4rem 0 1.6rem 0;
+    }
+
+    .faq-mini details {
+      background: #f6fcfb;
+      border-radius: 20px;
+      padding: 0.8rem 1.4rem;
+      margin-bottom: 0.8rem;
+      border: 1px solid #ccddd9;
+      transition: background 0.2s;
+    }
+
+    .faq-mini details summary {
+      font-weight: 480;
+      color: #1a4f47;
+      cursor: pointer;
+      padding: 0.2rem 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .faq-mini details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-mini details summary::before {
+      content: "↳";
+      color: #2a9d8f;
+      font-weight: 600;
+      margin-right: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .faq-mini details[open] summary::before {
+      content: "↴";
+    }
+
+    .faq-mini details p {
+      margin: 0.6rem 0 0.3rem 0.8rem;
+      color: #204742;
+      font-size: 0.95rem;
+    }
+
+    /* 访问句 + 链接 */
+    .visit-sentence {
+      margin: 2.6rem 0 1.2rem 0;
+      padding: 1rem 0 0.5rem 0;
+      border-top: 1px solid #cbdfdb;
+      font-size: 1.05rem;
+      color: #1b3d3d;
+    }
+
+    .visit-sentence a {
+      color: #1b7b6f;
+      text-decoration: none;
+      font-weight: 450;
+      border-bottom: 2px solid rgba(42, 157, 143, 0.3);
+      transition: border-color 0.2s, color 0.1s;
+    }
+
+    .visit-sentence a:hover {
+      border-bottom-color: #2a9d8f;
+      color: #12554b;
+    }
+
+    .footer-note {
+      margin-top: 2.8rem;
+      padding-top: 1rem;
+      border-top: 1px solid #d1e3df;
+      font-size: 0.85rem;
+      color: #4e6f6a;
+      text-align: center;
+      letter-spacing: 0.4px;
+    }
+
+    /* 移动端细调 */
+    @media (max-width: 500px) {
+      body {
+        padding: 0.8rem;
+      }
+
+      .blog-header h1 {
+        font-size: 1.8rem;
+      }
+
+      .lead-card {
+        padding: 1.2rem 1.2rem;
+      }
+
+      .essay-section {
+        padding: 1.2rem 1.2rem;
+      }
+
+      .blockquote-note {
+        padding: 1rem 1.2rem;
+      }
+
+      .card-item {
+        padding: 1rem 1rem 1.2rem 1rem;
+      }
+
+      .grid-cards {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .blog-header h1 {
+        font-size: 1.5rem;
+      }
+
+      .lead-card p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <header class="blog-header">
+    <h1>体育场与屏幕之间</h1>
+    <div class="sub">一种关于节奏、空间与关注的随笔</div>
+  </header>
+
+  <!-- 导语 -->
+  <div class="lead-card">
+    <p>
+      人们常常谈论运动带来的激情，却很少提及它塑造日常的方式。一个下午的奔跑，一次屏息后的投篮，
+      或只是默默跟踪联赛积分——这些动作重新排列了时间与情绪。  
+      <span class="accent-text">华体会</span> 所触及的，正是这种在观看与参与之间来回摆动的现代生活。
+    </p>
+  </div>
+
+  <!-- 网格卡片：特点与场景  -->
+  <div class="grid-cards">
+    <div class="card-item">
+      <h3>节奏的嵌套</h3>
+      <p>体育赛历构成了一种隐秘的节拍器。赛季、转会窗、杯赛周期，这些时间框架让日子有了起伏的轮廓。</p>
+    </div>
+    <div class="card-item">
+      <h3>共享的专注</h3>
+      <p>无论身在球场、酒吧还是手机屏幕前，对同一场赛事的注视形成了短暂的社群。安静或喧哗，都是共鸣。</p>
+    </div>
+    <div class="card-item">
+      <h3>个人的叙事</h3>
+      <p>每个人都有自己的“关键比赛”：某个逆转、一次绝杀、或者仅仅是一个下午的慢跑。故事比比分更持久。</p>
+    </div>
+  </div>
+
+  <!-- 正文段落 -->
+  <div class="essay-section">
+    <p>
+      体育之所以与许多人的生活产生真实的连接，并不是因为它总代表胜利或突破。反而是那些微小的、
+      近乎重复的时刻——训练中的枯燥、等待开球的安静、赛后缓慢散场的人流——构成了背景。
+      背景往往比高光更贴近身体。
+    </p>
+    <p>
+      近几年数字化的渗透让观看方式更加碎片。人们同时盯着多个终端、切换着直播与社交时间线，
+      但那种原始的、集体屏住呼吸的瞬间并未消失。它只是被分散到了更多屏幕上，依然有力。
+    </p>
+    <div class="blockquote-note">
+      如果把体育看作一种文化介质，那么它真正的核心不是输赢，而是“在场的期待”——
+      期待本身已经是一种参与。那些屏幕前紧握的双手、压低的声音，都是体验的一部分。
+    </div>
+    <p>
+      正因如此，一个能够稳定汇聚这些信息流的平台才显得自然。
+      <a href="https://hthsport-index.com">华体会</a> 试图维持这样一种调性：
+      既不夸大运动改变人生的神话，也不把观看简化成消费。它提供了一种安静的入口，
+      让感兴趣的人自己找到节奏。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <details>
+      <summary>为什么说平台风格与体育内容有关？</summary>
+      <p>形式会悄悄影响感受。简洁克制的界面减少干扰，让赛事本身的信息——比分、时间、动态——更突出。</p>
+    </details>
+    <details>
+      <summary>日常使用者能从中获得什么？</summary>
+      <p>保持对联赛、赛事日历的感知。不需要成为专家，只是多一个视角观察自己关注的运动。</p>
+    </details>
+  </div>
+
+  <!-- 访问句 自然嵌入链接 -->
+  <div class="visit-sentence">
+    如果你恰好想寻找一个不喧闹、不煽情的体育信息角落，或是想重新梳理自己对某项运动的关注方式，
+    可以看看 <a href="https://hthsport-index.com">华体会</a> 所呈现的内容。
+    它更像一个安静的窗口，而不是喇叭。
+  </div>
+
+  <div class="footer-note">
+    —— 记录于某个比赛日傍晚 · 从屏幕到球场，不过是一次深呼吸的距离
+  </div>
+
+</div>
+</body>
+</html>
